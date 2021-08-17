@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700');
+@import 'variables';
+@import '../plugins/fontawesome-free/css/all.min.css';
+@import '../plugins/overlayScrollbars/css/OverlayScrollbars.min.css';
+@import '../dist/css/adminlte.min.css';
+@import "~datatables.net-bs4/css/dataTables.bootstrap4.min.css";
+@import "~magnific-popup/dist/magnific-popup.css";
+@import "~select2/dist/css/select2.min.css";
+@import "~@ttskch/select2-bootstrap4-theme/dist/select2-bootstrap4.min.css";
+@import "~bootstrap-tagsinput/dist/bootstrap-tagsinput.css";
+
+
+
+.bootstrap-tagsinput .tag{
+    background-color: #5cb85c;
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+}
+
+.bootstrap-tagsinput{
+    width: 100%;
+    display: block;
+}
+
+/* overlay at start */
+.mfp-fade.mfp-bg {
+    opacity: 0;
+  
+    -webkit-transition: all 0.15s ease-out;
+    -moz-transition: all 0.15s ease-out;
+    transition: all 0.15s ease-out;
+  }
+  /* overlay animate in */
+  .mfp-fade.mfp-bg.mfp-ready {
+    opacity: 0.8;
+  }
+  /* overlay animate out */
+  .mfp-fade.mfp-bg.mfp-removing {
+    opacity: 0;
+  }
+  
+  /* content at start */
+  .mfp-fade.mfp-wrap .mfp-content {
+    opacity: 0;
+  
+    -webkit-transition: all 0.15s ease-out;
+    -moz-transition: all 0.15s ease-out;
+    transition: all 0.15s ease-out;
+  }
+  /* content animate it */
+  .mfp-fade.mfp-wrap.mfp-ready .mfp-content {
+    opacity: 1;
+  }
+  /* content animate out */
+  .mfp-fade.mfp-wrap.mfp-removing .mfp-content {
+    opacity: 0;
+  }
