@@ -65,7 +65,7 @@ background-size: 40vh;}
 		<div class="container thankyou">
 		<div class="row justify-content-center">
         <div class="col-lg-8"> 
-		<h1>Your Score {{ $contact->name }}</h1>
+		<h1>Your Score {{ $contact->decibels }}</h1>
 		<p>In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.</p>
 		
 		 

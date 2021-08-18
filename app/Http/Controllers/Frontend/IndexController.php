@@ -48,6 +48,7 @@ class IndexController extends Controller
             $contact->name = $request->name;
             $contact->email = $request->email;
             $contact->number = $request->phone;
+            $contact->decibels = $request->decibel;
             if ($request->has('audioFile'))
             {
                 $contact->audio = $request->file('audioFile')->store(config('constants.uploads.audio'));

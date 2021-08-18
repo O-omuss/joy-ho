@@ -112,7 +112,8 @@ function CGame(oData) {
         _oPlayerSquare.destroySquare();
         this._gameOver();
         // top.window.location.replace("https://tingtingting.in/projects/joyville_game/form.php?"+_iScore);
-        top.window.location.replace("http://localhost:8000/play/form?"+_iScore);
+        // top.window.location.replace("http://localhost:8000/play/form?"+_iScore);
+        top.window.location.replace("https://joyho.joyvillehomes.com/play/form?"+_iScore);
     };
     
     this.onClickedSquare = function(iColumn) {

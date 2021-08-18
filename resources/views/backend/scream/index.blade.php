@@ -24,6 +24,7 @@
                                     <th>Email</th>
                                     <th>Number</th>
                                     <th>Audio</th>
+                                    <th>Decibels</th>
                                     
                                 </tr>
                             </thead>
@@ -34,7 +35,8 @@
                                     <td>{{$contact->name}}</td>
                                     <td>{{$contact->email}}</td>
                                     <td>{{$contact->number}}</td>
-                                    <td><audio controls><source src="{{asset($contact->audio)}}"></audio></td>
+                                    <td><audio controls><source src="{{viewFile($contact->audio)}}"></audio></td>
+                                    <td>{{$contact->decibels}}</td>
                                     
                                     
                                 </tr>

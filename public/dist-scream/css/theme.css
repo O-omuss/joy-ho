@@ -290,6 +290,9 @@ a {
   .joy-page-1-par p {
     font-size: 1em
   }
+  #popup{
+    width: 90%;
+  }
 
   .man-header img,
   .metre img {
