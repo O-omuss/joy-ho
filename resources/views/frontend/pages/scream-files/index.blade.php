@@ -30,6 +30,20 @@
 
 @section('content')
 <body>
+	<div id="instruction_popup_bg">
+		<div id="instruction_popup">
+			<img src="{{asset('dist-scream/img/close.png')}}" class="close_img" alt="Close">
+			<p class="please_note_text">PLEASE NOTE</p>
+			<p class="please_note_desc">Allow microphone access from your phone by following the below steps:</p>
+			<ul class="action_list">
+				<li>Go to Settings</li>
+				<li>Search for Site Settings in the search bar and click on it</li>
+				<li>Click on Microphone under Permissions.</li>
+				<li>Allow access to the feature for the site.</li>
+				<li>Shout out JOY HO!</li>
+			</ul>
+		</div>
+	</div>
 	<div id="popup_bg">
 		<div id="popup">
 			<img src="{{asset('dist-scream/img/close.png')}}" class="close_img" alt="Close">
@@ -47,7 +61,7 @@
 				
 				<div class="row justify-content-center">
 
-					<div class="col-lg-8 joy-form" style="padding-top: 40px;">
+					<div class="col-lg-8 joy-form" style="margin-top: 40px;">
 
 						<h1>Roar to Cheer*</h1>
 						<p>Your roar has been recorded! Woot woot! Share your details and show us how loudly you can roar to win.</p>
@@ -93,7 +107,9 @@
 							</div> -->
 							<input type="submit" class="btn btn-dark mb-3" value="Submit Your Roar">
 							<br />
-							<p class="sven-message"></p>
+							<p class="nameError"></p>
+							<p class="emailError"></p>
+							<p class="numberError"></p>
 							@if(Session::has('message'))
 							<p class="sven-message">{{ Session::get('message') }}</p>
 							@endif
@@ -461,7 +477,7 @@
 									if (rms > maxrms) {
 										maxrms = rms;
 									}
-									fiveDec = maxrms.toFixed(5);
+									fiveDec = (maxrms.toFixed(2))*100;
 									meter.value = fiveDec;
 									// console.log("hello", rms, maxrms,fiveDec);
 								}
@@ -647,6 +663,9 @@
 								hideForm();
 							})
 						})()
+						$("#instruction_popup .close_img").click(function () {
+								$("#instruction_popup_bg").css("display", "none");
+							})
 
 						//for letters only
 						$.validator.addMethod("lettersonly", function (value, element) {
@@ -700,16 +719,6 @@
 							}
 						});
 
-						// $("#register-form").ajaxForm({
-						// 	success: function ($response) {
-						// 		if ($response == 1) {
-						// 			$('#thank-you-msg').show();
-						// 			setTimeout(function () {
-						// 				$('#thank-you-msg').hide();
-						// 			}, 5000);
-						// 		}
-						// 	}
-						// });
 			
 
 
@@ -727,44 +736,22 @@ $("[type='submit']").on('click submit', function(event) {
 
 
 	console.log(audioFile);
-	//    event.preventDefault();
-	   
-	//    var formEl = $(this).closest("form");
-	//    var msgLabel = $(".sven-message");
-	//    var formData = formEl.serialize();
-	//    var $inputBoxes = $('input, [type=\'submit\']', "#" + formEl[0].id);
-	//    $inputBoxes.prop('disabled', true);
-	//    msgLabel.css("visibility", "hidden");
-	//    msgLabel.css("visibility", "visible").html('<i class="fa fa-hourglass-start"></i>registering your details...');
-	//    var url = formEl.attr("action");
+
 	   $.ajax({
 			method: "POST",
 			processData: false,
 			contentType: false,
 			url: "{{route('frontend.form-submit')}}",
-			data: formData, // serializes the form's elements.
-	// 	   dataType: 'json',
+			data: formData,
 		   success: function(data) {
-			
 				window.location.href ='{{ url("/thank-you")}}' + "/" + data;
-	// 		   if (data.error) {
-	// 			   msgLabel.css("visibility", "hidden");
-	// 			   msgLabel.removeClass("error success").addClass("error").css("visibility", "visible").html('<i class="fa fa-times"></i> ' + data.message);
-	// 			   $inputBoxes.prop('disabled', false);
-	// 		   } else {
-	// 			   window.location.href = "thank-you.html";
-	// 		   }
 		   },
-	// 	   error: function() {
-	// 		   msgLabel.css("visibility", "hidden");
-	// 		   msgLabel.removeClass("error success").addClass("error").css("visibility", "visible").html('<i class="fa fa-times"></i> Problem connecting to server. Please try again');
-	// 		   $inputBoxes.prop('disabled', false);
-	// 	   }
+		   error: function(error) {
+				$(".nameError").text(error.responseJSON.errors.name);
+				$(".emailError").text(error.responseJSON.errors.email);
+				$(".numberError").text(error.responseJSON.errors.number);
+		   }
 	   });
-	//    event.preventDefault();
-
-
-		// $('form').submit();
 
    });
 

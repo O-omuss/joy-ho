@@ -19,7 +19,7 @@ class CreateScreamModelsTable extends Migration
             $table->string('slug')->nullable();
             $table->string('email')->unique()->nullable();
             $table->string('number')->nullable();
-            $table->string('decibels')->nullable();
+            $table->integer('decibels')->nullable();
             $table->text('audio')->nullable();
             $table->timestamps();
         });

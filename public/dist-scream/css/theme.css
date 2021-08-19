@@ -247,6 +247,7 @@ a {
 }
 
 #popup_bg {
+  display: none;
   position: fixed;
   z-index: 9;
   width: 100%;
@@ -254,7 +255,51 @@ a {
   height: 100%;
   background-color: rgba(0, 0, 0, .7);
 }
-
+#instruction_popup_bg{
+  position: fixed;
+  z-index: 9;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .7);
+}
+#instruction_popup{
+  padding: 50px;
+  position: fixed;
+  width: 70%;
+  max-height: 90vh;
+  z-index: 1;
+  background-color: #fef0d2;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+.please_note_text{
+  position: relative;
+  display: inline-block;
+  font-size: 30px;
+  font-family: conv_helvetica_condensed_bold_italic;
+}
+.please_note_text::after{
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: black;
+}
+.please_note_desc{
+  font-size: 24px;
+  font-family: conv_helvetica_condensed_bold_italic;
+  padding-top: 3%;
+  padding-bottom: 3%;
+}
+.action_list li{
+  font-size: 24px;
+  line-height: 1.6;
+  font-family: conv_helvetica_condensed_bold_italic;
+}
 #popup {
   position: fixed;
   width: 70%;
@@ -278,7 +323,7 @@ a {
   color: black;
 }
 
-#popup .close_img {
+.close_img {
   cursor: pointer;
   position: absolute;
   top: 15px;
@@ -292,11 +337,24 @@ a {
   }
   #popup{
     width: 90%;
+    top: 5%;
   }
-
+  #instruction_popup{
+    width: 90%;
+    padding: 20px;
+  }
   .man-header img,
   .metre img {
     width: 100%
+  }
+  .please_note_text{
+    font-size: 22px;
+  }
+  .please_note_desc{
+    font-size: 18px;
+  }
+  .action_list li{
+    font-size: 18px;
   }
 }
 

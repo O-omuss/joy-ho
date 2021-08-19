@@ -38,16 +38,23 @@ class IndexController extends Controller
     }
 
     public function formSubmit(Request $request){
-        // dd($request->all());
+
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|unique:scream_models',
+            'number' => 'required',
+        ]);
 
         $alreadyExist = ScreamModel::where('email', $request->email)->first();
+        
         if($alreadyExist){
-            return redirect()->back()->with('message','You have already submitted your recording');
+            return response()->json();
+            // return redirect()->back()->with('message','You have already submitted your recording');
         }else{
             $contact = new ScreamModel();
             $contact->name = $request->name;
             $contact->email = $request->email;
-            $contact->number = $request->phone;
+            $contact->number = round($request->number);
             $contact->decibels = $request->decibel;
             if ($request->has('audioFile'))
             {

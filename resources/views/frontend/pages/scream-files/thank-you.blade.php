@@ -66,8 +66,19 @@ background-size: 40vh;}
 		<div class="row justify-content-center">
         <div class="col-lg-8"> 
 		<h1>Your Score {{ $contact->decibels }}</h1>
-		<p>In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.</p>
+		@if($contact->decibels > 0 && $contact->decibels <= 40)
+
+		<p>Haule haule se hawa lagti hai, Aur aapki awaaz bhi</p>
+
+		@elseif($contact->decibels > 40 && $contact->decibels <= 80)
+
+		<p>Kitne Duur, Kitne Paas!</p>
+
+		@elseif($contact->decibels > 80)
 		
+		<p>JOY HOOOO! Ye hoti hai tabadtod performance!</p>
+
+		@endif
 		 
 		
 		</div>
