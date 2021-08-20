@@ -312,11 +312,41 @@
 								// finally connect the processor to the output
 								recorder.connect(context.destination);
 
+								var maxrms=0,fiveDec;
 								recorder.onaudioprocess = function (e) {
 									// Check 
 									if (!recording) return;
 									// Do something with the data, i.e Convert this to WAV
 									console.log('recording');
+
+
+
+
+									var input = e.inputBuffer.getChannelData(0),
+                                        len = input.length,
+                                        total = i = 0,
+                                        rms
+                                    while (i < len) total += Math.abs(input[i++])
+                                    rms = Math.sqrt(total / len)
+                                    if (rms > maxrms) {
+                                        maxrms = rms;
+                                    }
+                                    fiveDec = (maxrms.toFixed(2)) * 100;
+                                    meter.value = fiveDec;
+                                    // if (twoDec > 0 && twoDec <= 40) {
+                                    //     coptText.innerHTML = "Haule haule se hawa lagti hai, Aur aapki awaaz bhi";
+                                    // } else if (twoDec > 40 && twoDec <= 80) {
+                                    //     coptText.innerHTML = "Kitne Duur, Kitne Paas!";
+                                    // } else if (twoDec > 80) {
+                                    //     coptText.innerHTML = "JOY HOOOO! Ye hoti hai tabadtod performance!";
+                                    // }
+                                    // console.log("hi", maxrms, twoDec, rms);
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
 									let left = e.inputBuffer.getChannelData(0);
 									let right = e.inputBuffer.getChannelData(1);
 									if (!tested) {
@@ -445,6 +475,7 @@
 								link.download = 'output.wav';
 
 
+
 								var ctx = new AudioContext(),
 									url = audioUrl,
 									audio = new Audio(url)
@@ -464,23 +495,24 @@
 									audio.play()
 								}, false);
 
-								var maxrms = 0;
-								// loop through PCM data and calculate average
-								// volume for a given 2048 sample buffer
-								processor.onaudioprocess = function (evt) {
-									var input = evt.inputBuffer.getChannelData(0),
-										len = input.length,
-										total = i = 0,
-										rms
-									while (i < len) total += Math.abs(input[i++])
-									rms = Math.sqrt(total / len)
-									if (rms > maxrms) {
-										maxrms = rms;
-									}
-									fiveDec = (maxrms.toFixed(2))*100;
-									meter.value = fiveDec;
+								var maxrms = 0,
+									fiveDec;
+								// // loop through PCM data and calculate average
+								// // volume for a given 2048 sample buffer
+								// processor.onaudioprocess = function (evt) {
+								// 	var input = evt.inputBuffer.getChannelData(0),
+								// 		len = input.length,
+								// 		total = i = 0,
+								// 		rms
+								// 	while (i < len) total += Math.abs(input[i++])
+								// 	rms = Math.sqrt(total / len)
+								// 	if (rms > maxrms) {
+								// 		maxrms = rms;
+								// 	}
+								// 	fiveDec = (maxrms.toFixed(2))*100;
+								// 	meter.value = fiveDec;
 									// console.log("hello", rms, maxrms,fiveDec);
-								}
+								// }
 
 								showForm();
 							}
